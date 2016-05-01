@@ -5,5 +5,5 @@ var (
 	password         = `` // The user's password
 	serverAddrString = `` // The SSH server address
 	localAddrString  = `` // The local end-point
-	remoteAddrString = `` // The remote end-point (on the SSH server's side)
+	cloud9Cmd        = `` // Path to cloud9.py on remote server
 )
