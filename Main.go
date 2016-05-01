@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/SommerEngineering/SSHTunnel/Tunnel"
+	"github.com/dlukes/Ground8/Tunnel"
 	"github.com/howeyc/gopass"
 	"golang.org/x/crypto/ssh"
 	"log"
@@ -13,7 +13,7 @@ import (
 func main() {
 
 	// Show the current version:
-	log.Println(`SSHTunnel v1.3.0`)
+	log.Println(`Ground8 v0.0.1, based on SSHTunnel v1.3.0`)
 
 	// Allow Go to use all CPUs:
 	runtime.GOMAXPROCS(runtime.NumCPU())
@@ -24,7 +24,7 @@ func main() {
 	// Check if the password was provided:
 	for true {
 		if password == `` {
-			// Promt for the password:
+			// Prompt for the password:
 			fmt.Println(`Please provide the password for the connection:`)
 			if pass, errPass := gopass.GetPasswd(); errPass != nil {
 				log.Println(`There was an error reading the password securely: ` + errPass.Error())
