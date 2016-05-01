@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/dlukes/Ground8/Tunnel"
-	"github.com/howeyc/gopass"
+	"github.com/tcnksm/go-input"
 	"golang.org/x/crypto/ssh"
 	"log"
 	"os"
@@ -21,17 +20,35 @@ func main() {
 	// Read the configuration from the command-line args:
 	readFlags()
 
-	// Check if the password was provided:
+	// Prompting UI
+	ui := &input.UI{}
+
+	// If username and/or password were not provided, prompt for them
 	for true {
-		if password == `` {
-			// Prompt for the password:
-			fmt.Println(`Please provide the password for the connection:`)
-			if pass, errPass := gopass.GetPasswd(); errPass != nil {
-				log.Println(`There was an error reading the password securely: ` + errPass.Error())
-				os.Exit(1)
-				return
+		if username == `` {
+			query := `Username for ` + serverAddrString + `?`
+			name, err := ui.Ask(query, &input.Options{
+				Default:  os.Getenv("GROUND8_NAME"),
+				Required: true,
+				Loop:     true,
+			})
+			if err != nil {
+				log.Fatalln(`Error reading username: ` + err.Error())
 			} else {
-				password = string(pass)
+				username = name
+			}
+		} else if password == `` {
+			query := `Password for ` + username + ` at ` + serverAddrString + `?`
+			passwd, err := ui.Ask(query, &input.Options{
+				Default:  os.Getenv("GROUND8_PASSWD"),
+				Required: true,
+				Loop:     true,
+				Mask:     true,
+			})
+			if err != nil {
+				log.Fatalln(`Error reading password: ` + err.Error())
+			} else {
+				password = passwd
 			}
 		} else {
 			break
