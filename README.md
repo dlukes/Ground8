@@ -1,3 +1,10 @@
+Ground8
+=======
+
+A fork of SommerEngineering/SSHTunnel which aims to make it easy to start a [Cloud9 Core](https://github.com/c9/core) instance on a remote server and connect to it via local port forwarding. Original README follows below.
+
+---
+
 SSHTunnel
 =========
 SSHTunnel is a tiny small program to tunnel something through a SSH without any external dependencies. Just download the executable which matches your OS and architecture (32 vs. 64 bits) and run it.
