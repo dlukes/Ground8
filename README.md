@@ -1,12 +1,33 @@
 Ground8
 =======
 
-A fork of SommerEngineering/SSHTunnel which aims to make it easy to start a [Cloud9 Core](https://github.com/c9/core) instance on a remote server and connect to it via local port forwarding. Original README follows below.
+A fork of SommerEngineering/SSHTunnel which aims to make it easy to start a
+[Cloud9 Core](https://github.com/c9/core) instance on a remote server and
+connect to it via local port forwarding. Original README follows under
+horizontal rule below.
+
+Setup
+-----
+
+1. `go get` this repository.
+2. Set up [Cloud9 Core](https://github.com/c9/core) on your remote server:
+  - install [Node](https://nodejs.org/en/)
+  - and then, e.g. under `/opt/cloud9`, `git clone`
+    [Cloud9 Core](https://github.com/c9/core)
+3. Change the global (uppercase) variables in `python/cloud9.py` and upload it
+   to the server as well:
+   - this script is used to start a Cloud9 instance (or get the PID and port of
+     an already running one)
+   - you'll be needing `python3` and the `psutil` library to run it
+4. Optionally, change the default values for the command-line flags in
+   `ReadFlags.go` to better reflect your setup, and `go install`.
+5. Run `Ground8` (should be on your `$GOPATH`) from your terminal.
 
 ---
 
 SSHTunnel
 =========
+
 SSHTunnel is a tiny small program to tunnel something through a SSH without any external dependencies. Just download the executable which matches your OS and architecture (32 vs. 64 bits) and run it.
 
 ### Syntax
