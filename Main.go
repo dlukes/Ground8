@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"github.com/dlukes/Ground8/Tunnel"
+	"github.com/pkg/browser"
 	"github.com/tcnksm/go-input"
 	"golang.org/x/crypto/ssh"
 	"log"
@@ -105,8 +106,9 @@ func main() {
 	// Create the local end-point:
 	localListener := Tunnel.CreateLocalEndPoint(localAddrString)
 
-	log.Println(`Navigate to http://`+localAddrString+` in your browser to open Cloud9.`,
-		`Press Ctrl-C to shut down Cloud9 on the remote and terminate the session.`)
+	log.Println(`Navigating to http://` + localAddrString + ` in your browser to open Cloud9...`)
+	browser.OpenURL(`http://` + localAddrString)
+	log.Println(`Press Ctrl-C to shut down Cloud9 on the remote and terminate the session.`)
 
 	// Set up a handler for interrupt signals
 	sigs := make(chan os.Signal, 1)
